@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17111f">
+  <title>Scientific Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="calculator-shell">
+    <header class="topbar">
+      <a class="wordmark" href="#" aria-label="Scientific calculator home">
+        <span class="wordmark-mark" aria-hidden="true">∑</span>
+        <span>VECTOR<span class="wordmark-light"> / LAB</span></span>
+      </a>
+      <div class="topbar-meta"><span class="status-dot"></span> SCIENTIFIC <span class="meta-divider">/</span> <span id="angleReadout">DEG</span></div>
+    </header>
+
+    <section class="calculator" aria-label="Scientific calculator">
+      <div class="calculator-heading">
+        <div><p class="eyebrow">PRECISION INSTRUMENT</p><h1>Scientific calculator</h1></div>
+        <button class="icon-button" id="historyButton" type="button" aria-label="Show previous answer" title="Previous answer">↶</button>
+      </div>
+
+      <div class="display" aria-label="Calculator display">
+        <div class="display-status"><span id="shiftIndicator">SHIFT</span><span id="alphaIndicator">ALPHA</span><span id="memoryIndicator">MEM</span><span class="display-mode" id="modeIndicator">DEG</span></div>
+        <div id="expression" class="expression" aria-live="polite"></div>
+        <div class="result-row">
+          <div id="fractionResult" class="fraction-result" aria-hidden="true"></div>
+          <output id="result" class="result" aria-live="polite">0</output>
+        </div>
+      </div>
+
+      <div class="utility-row" aria-label="Calculator modes">
+        <button class="utility-key" data-action="shift" aria-pressed="false">SHIFT</button>
+        <button class="utility-key" data-action="alpha" aria-pressed="false">ALPHA</button>
+        <button class="utility-key" data-action="mode">MODE</button>
+        <button class="utility-key" data-action="setup">SETUP</button>
+        <button class="utility-key" data-action="calc">CALC</button>
+      </div>
+
+      <div class="keypad" aria-label="Calculator keys">
+        <section class="science-keys" aria-label="Scientific functions">
+          <p class="keypad-label">FUNCTIONS</p>
+          <div class="science-grid">
+            <button class="key function-key" data-insert="frac(">a⁄b</button>
+            <button class="key function-key" data-action="root"><span class="key-alt">∛</span>√</button>
+            <button class="key function-key" data-action="square"><span class="key-alt">x³</span>x²</button>
+            <button class="key function-key" data-function="log">log</button>
+            <button class="key function-key" data-function="ln">ln</button>
+            <button class="key function-key" data-function="sin">sin</button>
+            <button class="key function-key" data-function="cos">cos</button>
+            <button class="key function-key" data-function="tan">tan</button>
+            <button class="key function-key" data-function="sinh">sinh</button>
+            <button class="key function-key" data-function="cosh">cosh</button>
+            <button class="key function-key" data-function="tanh">tanh</button>
+            <button class="key function-key" data-insert="(">(</button>
+            <button class="key function-key" data-insert=")">)</button>
+            <button class="key function-key" data-insert=",">,</button>
+            <button class="key function-key" data-insert="^">xʸ</button>
+            <button class="key function-key" data-insert="10^(">10ˣ</button>
+            <button class="key function-key" data-insert="e^(">eˣ</button>
+            <button class="key function-key small-label" data-insert="nPr(">nPr</button>
+            <button class="key function-key small-label" data-insert="nCr(">nCr</button>
+            <button class="key function-key" data-insert="%">%</button>
+            <button class="key function-key scientific-key" data-insert="*10^">×10ⁿ</button>
+          </div>
+        </section>
+
+        <section class="number-pad" aria-label="Number pad">
+          <p class="keypad-label">NUMBER PAD</p>
+          <div class="number-grid">
+            <button class="key control-key" data-action="delete">DEL</button>
+            <button class="key control-key clear-key" data-action="clear">AC</button>
+            <button class="key memory-key" data-action="memory-recall">MR</button>
+            <button class="key memory-key" data-action="memory-clear">MC</button>
+            <button class="key number-key" data-insert="7">7</button>
+            <button class="key number-key" data-insert="8">8</button>
+            <button class="key number-key" data-insert="9">9</button>
+            <button class="key operator-key" data-insert="/">÷</button>
+            <button class="key number-key" data-insert="4">4</button>
+            <button class="key number-key" data-insert="5">5</button>
+            <button class="key number-key" data-insert="6">6</button>
+            <button class="key operator-key" data-insert="*">×</button>
+            <button class="key number-key" data-insert="1">1</button>
+            <button class="key number-key" data-insert="2">2</button>
+            <button class="key number-key" data-insert="3">3</button>
+            <button class="key operator-key" data-insert="-">−</button>
+            <button class="key number-key zero-key" data-insert="0">0</button>
+            <button class="key number-key" data-insert=".">.</button>
+            <button class="key operator-key" data-insert="+">+</button>
+            <button class="key function-key" data-insert="Ans">Ans</button>
+            <button class="key memory-key" data-action="memory-add">M+</button>
+            <button class="key memory-key" data-action="memory-subtract">M−</button>
+            <button class="key equals-key" data-action="equals">=</button>
+          </div>
+        </section>
+      </div>
+      <div id="setupPanel" class="setup-panel" hidden>
+        <span>Angle unit</span>
+        <button type="button" data-action="angle-deg" aria-pressed="true">DEG</button>
+        <button type="button" data-action="angle-rad" aria-pressed="false">RAD</button>
+        <span class="setup-hint">SHIFT toggles inverse functions · ALPHA inserts π or e</span>
+      </div>
+      <footer class="calculator-footer"><span>KEYBOARD READY</span><span>ENTER = CALCULATE <i></i></span></footer>
+    </section>
+    <p class="page-note">A clear view of complex things.</p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
